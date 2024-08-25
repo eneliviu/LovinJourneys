@@ -1,0 +1,9 @@
+
+
+<ul href="{% url 'home' %}">
+    {% for journey in journeys %}
+    <li>
+        {{ journey.country }} | {{ journey.place }}
+    </li>
+    {% endfor %}
+</ul>
