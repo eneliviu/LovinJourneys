@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+if os.path.isfile('env.py'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,13 +23,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pfe0*3-@shl*y5zafnp+hkwjkl+tn)l!@80%s=d#3t7h*k_35j'
+# SECRET_KEY = 'django-insecure-pfe0*3-@shl*y5zafnp+hkwjkl+tn)l!@80%s=d#3t7h*k_35j'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-eneliviu-lovinjourneys-b6q30xq8st2.ws.codeinstitute-ide.net'
+    '8000-eneliviu-lovinjourneys-b6q30xq8st2.ws.codeinstitute-ide.net',
+    '.herokuapp.com',
+    'https://*.codeanyapp.com',
+    'https://*.herokuapp.com',
+    'https://*.127.0.0.1'
     ]
 
 
@@ -85,6 +93,20 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeanyapp.com",
+    "https://*.herokuapp.com",
+    'https://*.127.0.0.1',
+    "https://8000-eneliviu-lovinjourneys-b6q30xq8st2.ws.codeinstitute-ide.net"
+]
+# Cross-Site Request Forgery: when an attacker's website tries to make requests to another site on your behalf.
+# The list of the trusted origins for requests.
+# Need to add both your local development server URL domain 
+# and the production server URL domain to allow you to add blog post
+# content from the admin dashboard.
+# The subdomain is wildcarded with a *.
 
 
 # Password validation
