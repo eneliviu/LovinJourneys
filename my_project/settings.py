@@ -44,14 +44,25 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     # pre-installed apps:
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth',  
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     # Local apps:
     'trip_app',
 ]
+
+SITE_ID = 1  # so that Django can handle multiple sites from one database
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+# The redirection URLs are also added so that after we've logged in or
+# logged out, the site will automatically redirect us to the home page.
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'my_project.urls'
@@ -68,7 +80,7 @@ ROOT_URLCONF = 'my_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,6 +140,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+# Not using email verification in this project, so this line informs Django 
+# not to expect it. Without this line, you would get Internal Server errors
+# (code 500) during login and registration.
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -152,3 +170,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'  # www.website.com/media/image-1
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  # somefolder/media/image-1.jpg
+
+
+# Where to go after login - if not next:
+LOGIN_REDIRECT_URL = 'journey-list'
