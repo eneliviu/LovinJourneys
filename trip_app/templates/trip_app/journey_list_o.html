@@ -1,0 +1,31 @@
+
+<h1>My trips</h1>
+
+{% if user.is_authenticated %}
+
+    <p>
+        Logged in as {{ user.username }}
+    </p>
+    
+    <p>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-info">Logout</button>
+        </form>
+    </p>
+    
+    {% else %}
+    
+    <p>
+        <a href="{% url 'login' %}">Please login</a>
+    </p>
+
+{% endif %}
+
+<ul href="{% url 'home' %}">
+    {% for journey in journeys %}
+    <li>
+        {{ journey.country }} | {{ journey.place }}
+    </li>
+    {% endfor %}
+</ul>

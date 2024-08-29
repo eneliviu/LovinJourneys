@@ -54,9 +54,18 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    # 3rd party
+    'crispy_forms',
+    'crispy_tailwind',
+
     # Local apps:
     'trip_app',
 ]
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
+CRISPY_TEMPLATE_PACK = 'tailwind'
 
 SITE_ID = 1  # so that Django can handle multiple sites from one database
 LOGIN_REDIRECT_URL = '/'
