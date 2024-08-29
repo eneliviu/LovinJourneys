@@ -18,10 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import SignupView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/', include('allauth.urls')),  # use allauth library
+    path('accounts/signup/', SignupView.as_view(), name='signup'),
     path('', include('trip_app.urls')),
 ]
 

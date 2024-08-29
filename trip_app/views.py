@@ -9,11 +9,13 @@ class HomeView(TemplateView):
 
 
 def journey_list(request):
-    journeys = Journey.objects.all()
+    print(Journey)
+    print(request.user)
+    
+    journeys = Journey.objects.filter(tourist=request.user.id)
     context = {
         'journeys': journeys
     }
-
     return render(request,
                   'trip_app/journey_list.html',
                   context)

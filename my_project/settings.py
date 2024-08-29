@@ -35,7 +35,8 @@ ALLOWED_HOSTS = [
     '.herokuapp.com',
     'https://*.codeanyapp.com',
     'https://*.herokuapp.com',
-    'https://*.127.0.0.1'
+    'https://*.127.0.0.1',
+    'localhost',
     ]
 
 
@@ -53,7 +54,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
     # Local apps:
     'trip_app',
 ]
@@ -174,3 +174,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  # somefolder/media/image-1.jpg
 
 # Where to go after login - if not next:
 LOGIN_REDIRECT_URL = 'journey-list'
+LOGOUT_REDIRECT_URL = 'journey-list'
