@@ -1,4 +1,19 @@
+<h1>My trips</h1>
+{% if user.is_authenticated %}
+<p>
+    Loggen in as {{ user.username }}
+</p>
+<p>
+    <a href="{% url 'logout' %}">
+        Logout
+    </a>
+</p>
+{% else %}
+<p>
+    Please <a href="{% url 'login' %}">Please login</a>
+</p>
 
+{% endif %}
 
 <ul href="{% url 'home' %}">
     {% for journey in journeys %}
