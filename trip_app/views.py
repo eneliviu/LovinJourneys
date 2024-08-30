@@ -12,9 +12,6 @@ class HomeView(TemplateView):
 
 
 def journey_list(request):
-    print(Journey)
-    print(request.user)
-    
     journeys = Journey.objects.filter(tourist=request.user.id)
     context = {
         'journeys': journeys
