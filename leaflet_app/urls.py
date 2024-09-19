@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import (HomeView, journey_list, TripCreateView, 
-                    TripDetailView, BlogDetailView)
+from .views import (journey_list)
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -16,5 +15,4 @@ urlpatterns = [
     path('dashboard/blog/<int:pk>/',
          BlogDetailView.as_view(),
          name='blog-detail'),
-
 ]
